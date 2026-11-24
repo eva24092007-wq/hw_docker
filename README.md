@@ -1,3 +1,34 @@
-## Шаблон для третьего ДЗ по ИПР
+\# Д/З по Docker
 
-Условие дз доступно по [ссылке](https://github.com/Nikfilk2030/missing_semester_hse_cs/blob/main/2026/amcs/year_1/hw_3/README.md)
+
+
+\## 4 балла – один контейнер
+
+Написала Dockerfile, собрала образ и запустила приложение. Опубликовала порт, передала приветствие через переменную окружения и проверила увеличение счётчика.
+
+
+
+\*\*Команды запуска:\*\*
+
+```bash
+
+docker build -t counter-app .
+
+docker run -d --name my\_counter -p 8080:8000 -e GREETING="Hello!" counter-app
+
+```
+
+
+
+\*\*Логи:\*\*
+
+```
+
+2026-11-24 17:35:25,512 listening port=8000 storage=sqlite
+
+2026-11-24 17:35:56,714 http 172.17.0.1 "GET / HTTP/1.1" 200 -
+
+2026-11-24 17:36:17,799 http 172.17.0.1 "POST /increment HTTP/1.1" 200 -
+
+```
+
