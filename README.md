@@ -44,7 +44,6 @@ docker run -d --name my\_counter -p 8080:8000 -e GREETING="Hello!" counter-app
 ```
 
 app-1  | 2026-11-24 18:02:34,212 listening port=8000 storage=sqlite
-
 app-1  | 2026-11-24 18:02:45,261 http 172.18.0.1 "GET / HTTP/1.1" 200 -
 
 ```
@@ -53,3 +52,43 @@ app-1  | 2026-11-24 18:02:45,261 http 172.18.0.1 "GET / HTTP/1.1" 200 -
 
 ![Скриншот 2](images/2.png)
 
+
+
+## 8 баллов – отдельное хранилище
+
+
+
+В compose.yaml работают два сервиса: app и redis. Проверила работу счётчика.
+
+
+
+**Команды:**
+```bash
+curl.exe -X POST http://localhost:8080/increment
+{"greeting": "Hello, it's Compose!", "count": 1, "hostname": "86ce19ba3b25", "storage": "redis"}
+curl.exe -X POST http://localhost:8080/increment
+{"greeting": "Hello, it's Compose!", "count": 2, "hostname": "86ce19ba3b25", "storage": "redis"}
+docker compose down
+docker compose up -d
+curl.exe http://localhost:8080/
+{"greeting": "Hello, it's Compose!", "count": 2, "hostname": "783edd51425e", "storage": "redis"}
+```
+```bash
+docker compose stop redis
+curl.exe -i http://localhost:8080/healthz
+HTTP/1.0 200 OK
+{"status": "alive"}
+curl.exe -i http://localhost:8080/readyz
+HTTP/1.0 503 Service Unavailable
+{"error": "storage_unavailable"}
+curl.exe -i -X POST http://localhost:8080/increment
+HTTP/1.0 503 Service Unavailable
+{"error": "storage_unavailable"}
+```
+```bash
+docker compose start redis
+curl.exe http://localhost:8080/
+{"greeting": "Hello, it's Compose!", "count": 2, "hostname": "783edd51425e", "storage": "redis"}
+curl.exe -X POST http://localhost:8080/increment
+{"greeting": "Hello, it's Compose!", "count": 3, "hostname": "783edd51425e", "storage": "redis"}
+```
