@@ -12,7 +12,7 @@
 
 ```bash
 docker build -t counter-app .
-docker run -d --name my\_counter -p 8080:8000 -e GREETING="Hello!" counter-app
+docker run -d --name my_counter -p 8080:8000 -e GREETING="Hello!" counter-app
 ```
 
 
