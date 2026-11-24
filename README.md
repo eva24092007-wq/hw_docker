@@ -27,11 +27,11 @@ docker run -d --name my\_counter -p 8080:8000 -e GREETING="Hello!" counter-app
 
 
 
-!\[Скриншот 1](images/1.png)
+![Скриншот 1](images/1.png)
 
 
 
-\## 6 баллов – Compose и данные
+## 6 баллов – Compose и данные
 
 
 
@@ -51,5 +51,5 @@ app-1  | 2026-11-24 18:02:45,261 http 172.18.0.1 "GET / HTTP/1.1" 200 -
 
 
 
-!\[Скриншот 2](images/2.png)
+![Скриншот 2](images/2.png)
 
