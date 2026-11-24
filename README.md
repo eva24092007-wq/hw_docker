@@ -92,3 +92,15 @@ curl.exe http://localhost:8080/
 curl.exe -X POST http://localhost:8080/increment
 {"greeting": "Hello, it's Compose!", "count": 3, "hostname": "783edd51425e", "storage": "redis"}
 ```
+
+
+
+![Скриншот 3](images/3.png)
+
+
+
+![Скриншот 4](images/4.png)
+
+
+
+![Скриншот 5](images/5.png)
